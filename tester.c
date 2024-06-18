@@ -16,6 +16,32 @@ void test1(unsigned int index, char *s)
 	if (index != 3)
 		*s = 'G';
 }
+void *lstmap_f(void *content)
+{
+	int length;
+	char *new_content;
+	
+	if (content)
+	{
+		length = ft_strlen((char *)content);
+		new_content = ft_itoa(length);
+	}
+	else
+	{
+		length = 0;
+		new_content = ft_itoa(length);
+	}
+	return (new_content);
+}
+
+void lstmap_del(void *content)
+{
+	printf("deleting %s\n", content);
+	if (content)
+		free(content);
+	printf("deleted");
+}
+
 int main (void)
 {
 	/* TOUPPER */
@@ -255,10 +281,10 @@ int main (void)
 	int ft_strlcat_return; // = ft_strlcat(ft_strlcat_cache, ft_catme, strlcat_cache_length);
 	int sys_strlcat_return;// = strlcat(sys_strlcat_cache, ft_catme, strlcat_cache_length);
 
-	while(strlcat_cache_length < 1)
+	while(strlcat_cache_length < 2)
 	{
-		ft_strlcat_return  = ft_strlcat(ft_strlcat_cache, ft_catme, strlcat_cache_length);
-		sys_strlcat_return = strlcat(sys_strlcat_cache, ft_catme, strlcat_cache_length);
+//		ft_strlcat_return  = ft_strlcat(0, ft_catme, strlcat_cache_length);
+//		sys_strlcat_return = strlcat(0, ft_catme, strlcat_cache_length);
 		if (memcmp(ft_strlcat_cache, sys_strlcat_cache, strlcat_cache_length) || ft_strlcat_return != sys_strlcat_return)
 		{
 			printf("ft_cache  : %s\n", ft_strlcat_cache);
@@ -324,11 +350,20 @@ int main (void)
 	size_t ft_strnstr_len = ft_strlen(ft_strnstr_haystack);
 	char *sys_strnstr_return;
 	char *ft_strnstr_return;
-	ft_strnstr_return = ft_strnstr(ft_strnstr_haystack, ft_strnstr_needle, ft_strnstr_len);
-	sys_strnstr_return = strnstr(ft_strnstr_haystack, ft_strnstr_needle, ft_strnstr_len);
-	if (sys_strnstr_return != ft_strnstr_return)
+	while(ft_strnstr_len--)
 	{
-		write(1, "strnstr error\n", 15);
+//		ft_strnstr_return = ft_strnstr(ft_strnstr_haystack, ft_strnstr_needle, ft_strnstr_len);
+//		sys_strnstr_return = strnstr(ft_strnstr_haystack, ft_strnstr_needle, ft_strnstr_len);
+//		ft_strnstr_return = ft_strnstr(0, ft_strnstr_needle, ft_strnstr_len);
+//		sys_strnstr_return = strnstr(0, ft_strnstr_needle, ft_strnstr_len);
+//		ft_strnstr_return = ft_strnstr(ft_strnstr_haystack, 0, ft_strnstr_len);
+//		sys_strnstr_return = strnstr(ft_strnstr_haystack, 0, ft_strnstr_len);
+		ft_strnstr_return = ft_strnstr(0, ft_strnstr_needle, 0);
+//		sys_strnstr_return = strnstr(0, ft_strnstr_needle, 0);
+		if (sys_strnstr_return != ft_strnstr_return)
+		{
+			write(1, "strnstr error\n", 15);
+		}
 	}
 	write(1, "strnstr done!\n", 14);
 	/* atoi */
@@ -337,10 +372,71 @@ int main (void)
 	if (ft_atoi(atoi_a) != atoi(atoi_a))
 		write(1, "smth wrong\n", 11);
 	write(1, "atoi done!\n",12);
+
+
 	/* calloc */
+	int calloc_count[10];
+	int calloc_size[10];
+	int calloc_iter = 0;
+	write(1, "finito\n", ft_strlen("finito\n"));
 
 
+	 /*	lstmap */
+	/*
+	char *some = "asd asdasd asdasd fddsf";
+	t_list *a = ft_lstnew((void *)some);
+	write(1, a->content, 4);
+	write(1, "\n", 1);
+	char next = (int)a->next + '0';
+	write(1, &next, 1);
 
+	char *content1 = "asd";
+	char *content2 = "wdsaf";
+
+	t_list *o = ft_lstnew(content1);
+	t_list *c = ft_lstnew(content2);
+	ft_lstadd_front(&o, c);
+	
+	
+	int l = ft_lstsize(c);
+	char m = l + '0';
+	write(1, &m, 1);
+	write(1, "\n", 1);
+	*/
+//	write(1, (char *)some->content, ft_strlen(some->content));
+/*	
+	char *content = "new in the end";
+	t_list *new = ft_lstnew(content);
+	ft_lstadd_back(&o, new);
+	write(1, c->content, ft_strlen(c->content));
+	void *lstmapped_ptr = ft_lstmap(c, lstmap_f, lstmap_del);
+	while (lstmapped_ptr->next)
+	{
+		write(1, lstmapped_ptr->content, ft_strlen(lstmapped_ptr->content));
+		write(1, "\n", 1);
+		c = c->next;
+	}
+*/
+
+
+/*
+	while (calloc_iter < 10)
+	{
+		calloc_count[calloc_iter] = calloc();
+		calloc_size[calloc_iter];
+		calloc_iter++;
+	}
+	calloc_iter = 0;
+	if (ft_calloc_return != calloc_return)
+		printf("%zu\n%zu\n", ft_calloc_return, calloc_return);
+		
+	write(1, "calloc done!\n",12);
+*/
+//	size_t uimk = (size_t)UINT_MAX;
+//	uimk++;
+//	char *zxczxc = ft_calloc(uimk, 1);
+//	char *zxczxc = calloc(uimk, 1);
+//	printf("%d", (int)zxczxc);
 		/*
 	void* k = malloc(sizeof(char) * 10);
 	ft_memset(k, 97, 7);

@@ -53,7 +53,7 @@ int main()
 //	ft_memmove(0, 0, 5);
 //	memmove(0, 0, 5);
 //	ft_strnstr("asd", "as", -1);
-	char haystack[30] = "aaabcabcd";
+/*	char haystack[30] = "aaabcabcd";
 	char needle[10] = "bcd";
 	int i = -5;
 	while (i < 10)
@@ -65,8 +65,19 @@ int main()
 		printf("other:	  %s\n", b);
 		printf("len:  	  %d\n", i);
 		i++;
-	}
+	}*/
 //	size_t num = 0;
 //	num--;
 //	printf("%lu", num);
+	char *sm = malloc(4);
+	char *dd = malloc(4);
+
+//	void *ptr = memmove(0, 0, 10); //0
+//	void *ptr = memmove(0, sm, 1); //seg fault
+//	void *ptr = memmove(sm, 0, 1); //seg fault
+//	void *ptr = memmove(0, 0, 0); //0
+//	void *ptr = memmove(0, sm, 0); //0
+//	void *ptr = memmove(sm, 0, 0); //ptr
+
+	printf("%lu\n", ptr);
 }
