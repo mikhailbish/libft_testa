@@ -36,7 +36,7 @@ void *lstmap_f(void *content)
 
 void lstmap_del(void *content)
 {
-	printf("deleting %s\n", content);
+	printf("deleting %s\n", (char *)content);
 	if (content)
 		free(content);
 	printf("deleted");
@@ -164,7 +164,7 @@ int main (void)
 	sys_memset_b = memset(sys_memset_b, 'd', 10);
 	ft_memset_b = ft_memset(ft_memset_b, 'd', 10);
 	if (memcmp(sys_memset_b, ft_memset_b, 11) != 0)
-		printf("%s", ft_memset_b);
+		printf("%s", (char *)ft_memset_b);
 	free(ft_memset_b);
 	free(sys_memset_b);
 	printf("memset done!\n");
@@ -250,7 +250,7 @@ int main (void)
 	
 	
 	/* strlcpy  */
-	int strlcpy_cache_length = 15;
+/*	int strlcpy_cache_length = 15;
 	char ft_strlcpy_cache[15];
 	char sys_strlcpy_cache[15];
 
@@ -271,7 +271,7 @@ int main (void)
 		write(1, "\n", 1);
 	}
 	write(1, "strlcpy done!\n", 14);
-
+*/
 	/* strlcat */
 	
 	int strlcat_cache_length = 0;
@@ -327,7 +327,7 @@ int main (void)
 		while(memchr_n < 24)
 		{
 			if (ft_memchr(memchr_s, is_memchr_c, memchr_n) != memchr(memchr_s, is_memchr_c, memchr_n))
-				printf("%s, %s\n", ft_memchr(memchr_s, is_memchr_c, memchr_n), memchr(memchr_s, is_memchr_c, memchr_n));
+				printf("%s, %s\n", (char *)ft_memchr(memchr_s, is_memchr_c, memchr_n), (char *)memchr(memchr_s, is_memchr_c, memchr_n));
 			memchr_n++;
 		}
 		is_memchr_c++;
