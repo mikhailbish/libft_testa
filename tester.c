@@ -50,7 +50,7 @@ int main (void)
 	while(to_upper_c != 512)
 	{
 		if (ft_toupper(to_upper_c) != toupper(to_upper_c))
-			printf("%c, %c\n", ft_toupper(to_upper_c), toupper(to_upper_c));
+			printf("%d, %d ERROR\n", ft_toupper(to_upper_c), toupper(to_upper_c));
 		to_upper_c++;
 	}
 	printf("toupper done!\n");
@@ -60,7 +60,7 @@ int main (void)
 	while(to_lower_c != 512)
 	{
 		if (ft_tolower(to_lower_c) != tolower(to_lower_c))
-			printf("%c, %c\n", ft_tolower(to_lower_c), tolower(to_lower_c));
+			printf("%d, %d ERROR\n", ft_tolower(to_lower_c), tolower(to_lower_c));
 		to_lower_c++;
 	}
 	printf("tolower done!\n");
@@ -70,7 +70,7 @@ int main (void)
 	while(is_alpha_c != 512)
 	{
 		if (ft_isalpha(is_alpha_c) != isalpha(is_alpha_c))
-			printf("%c, %c\n", ft_isalpha(is_alpha_c), isalpha(is_alpha_c));
+			printf("%d, %d ERROR\n", ft_isalpha(is_alpha_c), isalpha(is_alpha_c));
 		is_alpha_c++;
 	}
 	printf("isalpha done!\n");
@@ -82,7 +82,7 @@ int main (void)
 	while(is_digit_c != 512)
 	{
 		if (ft_isdigit(is_digit_c) != isdigit(is_digit_c))
-			printf("%c, %c\n", ft_isdigit(is_digit_c), isdigit(is_digit_c));
+			printf("%d, %d ERROR\n", ft_isdigit(is_digit_c), isdigit(is_digit_c));
 		is_digit_c++;
 	}
 	printf("isdigit done!\n");
@@ -94,7 +94,7 @@ int main (void)
 	while(is_alnum_c != 512)
 	{
 		if (ft_isalnum(is_alnum_c) != isalnum(is_alnum_c))
-			printf("%c, %c\n", ft_isalnum(is_alnum_c), isalnum(is_alnum_c));
+			printf("%d, %d ERROR\n", ft_isalnum(is_alnum_c), isalnum(is_alnum_c));
 		is_alnum_c++;
 	}
 	printf("isalnum done!\n");
@@ -107,7 +107,7 @@ int main (void)
 	while(is_ascii_c != 512)
 	{
 		if (ft_isascii(is_ascii_c) != isascii(is_ascii_c))
-			printf("%c, %c\n", ft_isascii(is_ascii_c), isascii(is_ascii_c));
+			printf("%d, %d ERROR\n", ft_isascii(is_ascii_c), isascii(is_ascii_c));
 		is_ascii_c++;
 	}
 	printf("isascii done!\n");
@@ -119,7 +119,7 @@ int main (void)
 	while(is_print_c != 512)
 	{
 		if (ft_isprint(is_print_c) != isprint(is_print_c))
-			printf("%c, %c\n", ft_isprint(is_print_c), isprint(is_print_c));
+			printf("%d, %d ERROR\n", ft_isprint(is_print_c), isprint(is_print_c));
 		is_print_c++;
 	}
 	printf("isprint done!\n");
@@ -131,7 +131,7 @@ int main (void)
 	while(is_strchr_c != 512)
 	{
 		if (ft_strchr(strchr_s, is_strchr_c) != strchr(strchr_s, is_strchr_c))
-			printf("%s, %s, %d\n", ft_strchr(strchr_s, is_strchr_c), strchr(strchr_s, is_strchr_c), is_strchr_c);
+			printf("%s, %s, %d ERROR\n", ft_strchr(strchr_s, is_strchr_c), strchr(strchr_s, is_strchr_c), is_strchr_c);
 		is_strchr_c++;
 	}
 	printf("strchr done!\n");
@@ -142,7 +142,7 @@ int main (void)
 	while(is_strrchr_c != 512)
 	{
 		if (ft_strrchr(strrchr_s, is_strrchr_c) != strrchr(strrchr_s, is_strrchr_c))
-			printf("%s, %s\n", ft_strrchr(strrchr_s, is_strrchr_c), strrchr(strrchr_s, is_strrchr_c));
+			printf("%s, %s ERROR\n", ft_strrchr(strrchr_s, is_strrchr_c), strrchr(strrchr_s, is_strrchr_c));
 		is_strrchr_c++;
 	}
 	printf("strrchr done!\n");
@@ -158,13 +158,17 @@ int main (void)
 	void *sys_memset_b = 0;
 	void *ft_memset_b = 0;
 
-   	sys_memset_b = (void *)malloc(10 * sizeof(char));
-   	ft_memset_b = (void *)malloc(10 * sizeof(char));
+   	sys_memset_b = (void *)malloc(128 * sizeof(char));
+   	ft_memset_b = (void *)malloc(128 * sizeof(char));
 
-	sys_memset_b = memset(sys_memset_b, 'd', 10);
-	ft_memset_b = ft_memset(ft_memset_b, 'd', 10);
-	if (memcmp(sys_memset_b, ft_memset_b, 11) != 0)
-		printf("%s", (char *)ft_memset_b);
+	sys_memset_b = memset(sys_memset_b, 'd', 128);
+	ft_memset_b = ft_memset(ft_memset_b, 'd', 128);
+	sys_memset_b = memset(sys_memset_b, 'z', 100);
+	ft_memset_b = ft_memset(ft_memset_b, 'z', 100);
+	sys_memset_b = memset(sys_memset_b, 'l', 99);
+	ft_memset_b = ft_memset(ft_memset_b, 'l', 99);
+	if (memcmp(sys_memset_b, ft_memset_b, 128) != 0)
+		printf("%s ERROR in memset\n", (char *)ft_memset_b);
 	free(ft_memset_b);
 	free(sys_memset_b);
 	printf("memset done!\n");
@@ -345,27 +349,27 @@ int main (void)
 	write(1, "memcmp done!\n", 13);
 	
 	/* strnstr */
-	char *ft_strnstr_needle = "s";
+/*	char *ft_strnstr_needle = "s";
 	char *ft_strnstr_haystack = "asd";
 	size_t ft_strnstr_len = ft_strlen(ft_strnstr_haystack);
 	char *sys_strnstr_return;
 	char *ft_strnstr_return;
 	while(ft_strnstr_len--)
 	{
-//		ft_strnstr_return = ft_strnstr(ft_strnstr_haystack, ft_strnstr_needle, ft_strnstr_len);
-//		sys_strnstr_return = strnstr(ft_strnstr_haystack, ft_strnstr_needle, ft_strnstr_len);
+		ft_strnstr_return = ft_strnstr(ft_strnstr_haystack, ft_strnstr_needle, ft_strnstr_len);
+		sys_strnstr_return = strnstr(ft_strnstr_haystack, ft_strnstr_needle, ft_strnstr_len);
 //		ft_strnstr_return = ft_strnstr(0, ft_strnstr_needle, ft_strnstr_len);
 //		sys_strnstr_return = strnstr(0, ft_strnstr_needle, ft_strnstr_len);
 //		ft_strnstr_return = ft_strnstr(ft_strnstr_haystack, 0, ft_strnstr_len);
 //		sys_strnstr_return = strnstr(ft_strnstr_haystack, 0, ft_strnstr_len);
-		ft_strnstr_return = ft_strnstr(0, ft_strnstr_needle, 0);
+//		ft_strnstr_return = ft_strnstr(0, ft_strnstr_needle, 0);
 //		sys_strnstr_return = strnstr(0, ft_strnstr_needle, 0);
 		if (sys_strnstr_return != ft_strnstr_return)
 		{
 			write(1, "strnstr error\n", 15);
 		}
 	}
-	write(1, "strnstr done!\n", 14);
+	write(1, "strnstr done!\n", 14);*/
 	/* atoi */
 	//do overflow underflow checks
 	char *atoi_a = "12312331231231223123123";

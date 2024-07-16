@@ -7,7 +7,9 @@ int main()
 	char *message = "asd";
 	char **words;
 	int counter = 0;
-	words = ft_split(message, 'a');
+	words = ft_split(message, 'k');
+	if (!words)
+		return (1);
 	while (*words)
 	{
 		printf("%s\n", *words);
@@ -22,4 +24,5 @@ int main()
 	}
 	words -= counter;
 	free(words);
+	return (0);
 }
