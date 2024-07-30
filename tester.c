@@ -42,6 +42,11 @@ void lstmap_del(void *content)
 	printf("deleted");
 }
 
+static int ft_same_sign(int a, int b)
+{
+	return (a > 0 && b > 0) || (a < 0 && b < 0) || a == b;
+}
+
 int main (void)
 {
 	/* TOUPPER */
@@ -69,7 +74,7 @@ int main (void)
 
 	while(is_alpha_c != 512)
 	{
-		if (ft_isalpha(is_alpha_c) != isalpha(is_alpha_c))
+		if (!ft_same_sign(ft_isalpha(is_alpha_c), isalpha(is_alpha_c)))
 			printf("%d, %d ERROR\n", ft_isalpha(is_alpha_c), isalpha(is_alpha_c));
 		is_alpha_c++;
 	}
@@ -81,7 +86,7 @@ int main (void)
 
 	while(is_digit_c != 512)
 	{
-		if (ft_isdigit(is_digit_c) != isdigit(is_digit_c))
+		if (!ft_same_sign(ft_isdigit(is_digit_c), isdigit(is_digit_c)))
 			printf("%d, %d ERROR\n", ft_isdigit(is_digit_c), isdigit(is_digit_c));
 		is_digit_c++;
 	}
