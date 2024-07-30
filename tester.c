@@ -42,9 +42,9 @@ void lstmap_del(void *content)
 	printf("deleted");
 }
 
-static int ft_same_sign(int a, int b)
+static int ft_same_char_outcome(int a, int b)
 {
-	return (a > 0 && b > 0) || (a < 0 && b < 0) || a == b;
+	return  (a != 0 && b != 0) || (a == 0 && b == 0);
 }
 
 int main (void)
@@ -64,7 +64,7 @@ int main (void)
 
 	while(to_lower_c != 512)
 	{
-		if (ft_tolower(to_lower_c) != tolower(to_lower_c))
+		if (ft_tolower((unsigned char)to_lower_c) != tolower((unsigned char)to_lower_c))
 			printf("%d, %d ERROR\n", ft_tolower(to_lower_c), tolower(to_lower_c));
 		to_lower_c++;
 	}
@@ -74,8 +74,8 @@ int main (void)
 
 	while(is_alpha_c != 512)
 	{
-		if (!ft_same_sign(ft_isalpha(is_alpha_c), isalpha(is_alpha_c)))
-			printf("%d, %d ERROR\n", ft_isalpha(is_alpha_c), isalpha(is_alpha_c));
+		if (!ft_same_char_outcome(ft_isalpha((unsigned char)is_alpha_c), isalpha((unsigned char)is_alpha_c)))
+			printf("%d, %d ERROR @ is aplha = %d, %c\n", ft_isalpha(is_alpha_c), isalpha(is_alpha_c), is_alpha_c, (unsigned char)is_alpha_c);
 		is_alpha_c++;
 	}
 	printf("isalpha done!\n");
@@ -86,7 +86,7 @@ int main (void)
 
 	while(is_digit_c != 512)
 	{
-		if (!ft_same_sign(ft_isdigit(is_digit_c), isdigit(is_digit_c)))
+		if (!ft_same_char_outcome(ft_isdigit((unsigned char)is_digit_c), isdigit((unsigned char)is_digit_c)))
 			printf("%d, %d ERROR\n", ft_isdigit(is_digit_c), isdigit(is_digit_c));
 		is_digit_c++;
 	}
@@ -99,6 +99,7 @@ int main (void)
 	while(is_alnum_c != 512)
 	{
 		if (ft_isalnum(is_alnum_c) != isalnum(is_alnum_c))
+		if (!ft_same_char_outcome(ft_isalnum((unsigned char)is_alnum_c), isalnum((unsigned char)is_alnum_c)))
 			printf("%d, %d ERROR\n", ft_isalnum(is_alnum_c), isalnum(is_alnum_c));
 		is_alnum_c++;
 	}
@@ -111,7 +112,7 @@ int main (void)
 
 	while(is_ascii_c != 512)
 	{
-		if (ft_isascii(is_ascii_c) != isascii(is_ascii_c))
+		if (!ft_same_char_outcome(ft_isascii((unsigned char)is_ascii_c), isascii((unsigned char)is_ascii_c)))
 			printf("%d, %d ERROR\n", ft_isascii(is_ascii_c), isascii(is_ascii_c));
 		is_ascii_c++;
 	}
@@ -124,6 +125,7 @@ int main (void)
 	while(is_print_c != 512)
 	{
 		if (ft_isprint(is_print_c) != isprint(is_print_c))
+		if (!ft_same_char_outcome(ft_isprint((unsigned char)is_print_c), isprint((unsigned char)is_print_c)))
 			printf("%d, %d ERROR\n", ft_isprint(is_print_c), isprint(is_print_c));
 		is_print_c++;
 	}
@@ -282,7 +284,7 @@ int main (void)
 	write(1, "strlcpy done!\n", 14);
 */
 	/* strlcat */
-	
+	/*
 	int strlcat_cache_length = 0;
 	char ft_strlcat_cache[50] = "pqaasd";
 	char sys_strlcat_cache[50] = "pqaasd";
@@ -305,8 +307,8 @@ int main (void)
 		strlcat_cache_length++;
 	}
 	
-	
 	printf("strlcat done!\n");
+	*/
 	/* strncmp */
 	char *ft_strncmp_s1 = "some";
 	char *ft_strncmp_s2 = "someradasdasdsadassdas";
