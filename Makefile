@@ -17,6 +17,7 @@ $(NAME): $(LF)
 $(LF):
 	make -C ../libft/
 	cp ../libft/libft.a ./
+	cp ../libft/libft.h ./
 
 re: clean all
 

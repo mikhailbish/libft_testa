@@ -389,7 +389,6 @@ int main (void)
 	int calloc_count[10];
 	int calloc_size[10];
 	int calloc_iter = 0;
-	write(1, "finito\n", ft_strlen("finito\n"));
 
 
 	 /*	lstmap */
@@ -610,5 +609,101 @@ int main (void)
 	}
 	write(1, c->content, ft_strlen(c->content));
 	*/
+	{
+	int i = 0;
+	char *some[] = {
+		"12312",
+		"-123123",
+		"-",
+		"-0x123321",
+		"-0x123321",
+		"9223372036854775899",
+		"922337203685477589",
+		"-9223372036854775899",
+		"-922337203685477589",
+		"--9223372036854775899",
+		"--922337203685477589",
+		"92233720FFFFFFFFFF",
+		"     -ZXCVBNMawdasd",
+		"0xZXCVBNMawdasd",
+		"0xZXCVBNMa12wdasd",
+		"hello world",
+		"hello-+ world",
+		"-+-+hello-+ world",
+		"2147483647",
+		" -2147483647",
+		" - 2147483647",
+		"-0",
+		"0",
+		"-1",
+		"1",
+		""
+	};
+	
+	char *my_endptr;
+	char *sys_endptr;
+	char *num = "-1";
+	long my_long;
+	long sys_long;
+	int base;
+//	sys_long = strtol(num, &sys_endptr, 0);
+//	my_long = ft_strtol(num, &my_endptr, 0);
+//	sys_long = strtol(num, &sys_endptr, 0);
+//	my_long = ft_strtol(num, &my_endptr, 0);
+	while (*some[i])
+	{
+		base = 0;
+		sys_long = strtol(some[i], &sys_endptr, base);
+		my_long = ft_strtol(some[i], &my_endptr, base);
+		if ((my_long != sys_long) || (my_endptr != sys_endptr))
+		{
+			printf("string: %s\n", some[i]);
+			printf("base:%d\n", base);
+			printf("my long: %li\n", my_long);
+			printf("syslong: %li\n", sys_long);
+			printf("start ptr: %p\n", num);
+			printf("my ptr:%p\n", my_endptr);
+			printf("sysptr:%p\n", sys_endptr);
+			write(1, "\n", 1);
+		}
+		base = 2;
+		while (base < 37)
+		{
+			sys_long = strtol(some[i], &sys_endptr, base);
+			my_long = ft_strtol(some[i], &my_endptr, base);
+			if ((my_long != sys_long) || (my_endptr != sys_endptr))
+			{
+				printf("string: %s\n", some[i]);
+				printf("base:%d\n", base);
+				printf("my long: %li\n", my_long);
+				printf("syslong: %li\n", sys_long);
+				printf("start ptr: %p\n", num);
+				printf("my ptr:%p\n", my_endptr);
+				printf("sysptr:%p\n", sys_endptr);
+				write(1, "\n", 1);
+			}
+			base++;
+		}
+		base = 2;
+		while (base < 37)
+		{
+			sys_long = strtol(some[i], 0, base);
+			my_long = ft_strtol(some[i], 0, base);
+			if ((my_long != sys_long) || (my_endptr != sys_endptr))
+			{
+				printf("string: %s\n", some[i]);
+				printf("base:%d\n", base);
+				printf("my long: %li\n", my_long);
+				printf("syslong: %li\n", sys_long);
+				printf("start ptr: %p\n", num);
+				write(1, "\n", 1);
+			}
+			base++;
+		}
+		i++;
+	}
+	write(1, "strtol done!\n", 13);
+	}
+	write(1, "finito\n", ft_strlen("finito\n"));
 	return (0);
 }

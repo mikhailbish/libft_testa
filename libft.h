@@ -6,7 +6,7 @@
 /*   By: mbutuzov <mbutuzov@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:25:34 by mbutuzov          #+#    #+#             */
-/*   Updated: 2024/05/06 18:29:29 by mbutuzov         ###   ########.fr       */
+/*   Updated: 2024/08/07 20:48:23 by mbutuzov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include <limits.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
+
+# if BUFFER_SIZE < 0
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 0
+# endif
 
 typedef struct s_list
 {
@@ -64,5 +75,15 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+char	*get_next_line(int fd);
+int		ft_putchar_count(char s, int *ptr);
+int		ft_putnumber_base(long long number, char *radix);
+int		ft_printf(const char *format, ...);
+int		ft_ptr_handler(unsigned long num);
+int		ft_putstr(char *s);
+int		ft_isspace(int c);
+int		ft_isupper(int c);
+int		ft_islower(int c);
+long	ft_strtol(const char *nptr, char **endptr, int base);
 
 #endif
